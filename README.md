@@ -13,12 +13,11 @@ Following the style guide will help maintain consistency and readability of code
     - [JavaScript](#javascript)
     - [React](#react)
     - [CSS Styling](#css-styling)
-- [Performance & Optimisations](#)
+    - [Testing](#testing)
+- [Performance & Optimisations](performance--optimisations)
 - [GitHub Best Practices](#github-best-practices)
     - [Semantic Commit Messages](#semantic-commit-messages)
     - [Branches](#branches)
-- [Notes on Production Build](#features-at-a-glance)
-    - [Serving React app with Django](#drawing)
 
 ## Code Style Guide
 
@@ -173,6 +172,70 @@ The useState hook is used to manage the component's state, rather than directly 
  - Use a linter, such as stylelint, to enforce consistent and maintainable CSS styles.
  - Prefer .svg over .png (.jpg) for icons. Consider converting an .svg icon to a reusable component with props to control the size and color
  - Prefer .webp over .png (.jpg) for images.
+
+### Testing
+#### A walkthrough guide how to perform testing of React application
+
+* Identify components to test: Determine which components need to be tested. Typically, you want to test components that have complex logic, state management, or user interactions.
+
+* Write unit tests: Write unit tests for each component. Unit tests should cover individual functions, props, and state changes of the component.
+
+* Write integration tests: Write integration tests to test the interaction between multiple components.
+
+* Write end-to-end tests: Write end-to-end tests to test the entire flow of the application, from the user's perspective. Use tools like Cypress or Selenium for this.
+
+* Mock dependencies: Use mocking libraries to mock any external dependencies, like APIs or data sources.
+
+* Run tests regularly: Run tests regularly to ensure that they are up to date and that changes to the code don't break existing tests.
+
+* Automate tests: Automate the testing process using continuous integration tools like Travis CI or Jenkins.
+
+* Debug failing tests: Debug any failing tests and fix the code accordingly.
+
+* Refactor tests: As the code evolves, refactor tests to ensure they remain accurate and up to date.
+
+
+#### Example
+Let's say you have a simple component that displays a message, like this:
+
+```
+import React from 'react';
+
+function Message(props) {
+  return (
+    <div className="message">{props.text}</div>
+  );
+}
+
+export default Message;
+```
+
+To test this component using Jest and Enzyme, you would write a test code like this:
+
+```
+import React from 'react';
+import { shallow } from 'enzyme';
+import Message from './Message';
+
+describe('Message', () => {
+  it('renders the message text', () => {
+    const wrapper = shallow(<Message text="Hello, world!" />);
+    const message = wrapper.find('.message');
+    expect(message.text()).toEqual('Hello, world!');
+  });
+});
+```
+
+Here's what this code does:
+
+1. We import the necessary libraries: React, Enzyme, and our component.
+2. We use the Jest `describe` function to group our tests together.
+3. We use the Jest `it` function to define a single test case.
+4. In the test case, we create a new instance of our component using Enzyme's `shallow` function.
+5. We find the element with the `.message` class using Enzyme's `find` function.
+6. We use the Jest `expect` function to test that the message text is equal to "Hello, world!".
+
+By following these steps, you can write test code for your React components using Jest and ensure that they function correctly.
 
 
 ## Performance & Optimizations
