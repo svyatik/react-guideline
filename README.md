@@ -14,7 +14,7 @@ Following the style guide will help maintain consistency and readability of code
     - [React](#react)
     - [CSS Styling](#css-styling)
     - [Testing](#testing)
-- [Performance & Optimisations](performance--optimisations)
+- [Performance & Optimizations](performance--optimizations)
 - [GitHub Best Practices](#github-best-practices)
     - [Semantic Commit Messages](#semantic-commit-messages)
     - [Branches](#branches)
